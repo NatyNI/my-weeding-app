@@ -87,7 +87,7 @@
                         const display = ((guest.prenume || '') + ' ' + (guest.nume || '')).trim();
                         if (display) nameEl.textContent = display;
                         if (guest.masa !== undefined && guest.masa !== null) {
-                            messageEl.innerHTML = '<span class="text-2xl font-semibold">Tu stai la masa ' + (guest.masa || 'nealocat') + '</span>';
+                            messageEl.innerHTML = '<span class="text-2xl font-semibold">Locul tau esta la masa ' + (guest.masa || 'nealocat') + '</span>';
                         }
                         const plus = guest.plus ? ('Însoțitor: +' + guest.plus) : '—';
                         detailsEl.innerHTML = '<div class="p-4 rounded-lg" style="background:#F2EDE0;border:1px solid rgba(166,132,80,0.06)"><div class="text-sm text-gray-600">Detalii invitat</div><div class="mt-2 text-lg">' + plus + '</div></div>';
@@ -100,7 +100,15 @@
 
             // If masa is present in URL, show immediately and stop
             if (rawDecoded && masaParam) {
-                messageEl.innerHTML = '<span class="text-2xl font-semibold">Tu stai la masa ' + (masaParam || 'nealocat') + '</span>';
+                messageEl.innerHTML = `
+  <div class="text-center">
+    <span class="text-lg text-gray-600">Locul tău este la masa</span><br>
+    <span class="inline-block mt-2 px-4 py-2 text-3xl font-bold text-[#A77B2E] bg-[#FFF4E0] rounded-lg shadow-md">
+      ${masaParam || 'nealocat'}
+    </span>
+  </div>
+
+                                    `;
                 const plusText = prenumeParam || numeParam ? 'Invitat: ' + (prenumeParam ? (prenumeParam + ' ') : '') + (numeParam || '') : '—';
                 detailsEl.innerHTML = '<div class="p-4 rounded-lg" style="background:#F2EDE0;border:1px solid rgba(166,132,80,0.06)"><div class="text-sm text-gray-600">Detalii invitat</div><div class="mt-2 text-lg">' + plusText + '</div></div>';
                 return;
@@ -125,7 +133,24 @@
                 const list = Array.isArray(data) ? data : (data.invitați || data.invitati || data.guests || []);
                 const found = list.find(g => {
                     const fullname = ((g.prenume || '') + ' ' + (g.nume || '')).trim();
-                    return normalizeStr(fullname) === normalizeStr(target) || normalizeStr(g.nume) === normalizeStr(target) || normalizeStr(g.prenume || '') === normalizeStr(target);
+                    const target_norm = normalizeStr(target);
+                    const fullname_norm = normalizeStr(fullname);
+                    const nume_norm = normalizeStr(g.nume);
+                    
+                    // Check full name first
+                    if (fullname_norm === target_norm) return true;
+                    if (nume_norm === target_norm) return true;
+                    
+                    // Check if target matches any of the prenumele separated by &
+                    const prenume = g.prenume || '';
+                    if (prenume.includes('&')) {
+                        const prenumeles = prenume.split('&').map(p => normalizeStr(p.trim()));
+                        if (prenumeles.some(p => p === target_norm)) return true;
+                    } else {
+                        if (normalizeStr(prenume) === target_norm) return true;
+                    }
+                    
+                    return false;
                 });
                 if(found){
                     const masa = found.masa ?? 'nealocat';

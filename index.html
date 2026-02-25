@@ -46,7 +46,7 @@
     <div id="app" class="min-h-screen flex items-start justify-center py-12 px-6">
         <div class="w-full max-w-2xl">
             <header class="mb-8 text-center">
-                <h1 class="font-serif text-4xl text-gold-dark mb-2" style="color:#A77B2E">SEARCH</h1>
+                <h1 class="font-serif text-2xl text-gold-dark mb-2" style="color:#A77B2E">SEARCH</h1>
                 <p class="text-sm text-gray-600">Lista invitaților — selectează un nume pentru masa alocată</p>
                 <div class="mt-4 flex items-center justify-center gap-3">
                 </div>
@@ -69,14 +69,14 @@
 
                 <div v-if="loading" class="py-12 text-center text-gray-500">Se încarcă invitații…</div>
                 <div v-else-if="error" class="py-12 text-center text-red-600">Eroare la încărcare: {{ error }}</div>
-                <div v-else>
+                <div v-else class="overflow-y-auto max-h-[21.5rem]">
                     <div v-if="!query.trim()" class="py-12 text-center text-gray-500">Introdu numele tău pentru a vedea sugestii.</div>
-                    <div v-else class="overflow-y-auto" style="max-height:21.5rem">
+                    <div v-else class="overflow-y-auto" style="max-height:18rem">
                     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-1">
                         <li v-for="guest in filteredGuests" :key="guest.id || (guest.prenume + guest.nume)" @click="selectGuest(guest)"
                             class="cursor-pointer flex items-center justify-between gap-1 p-1 rounded-lg border border-[rgba(166,132,80,0.06)] hover:shadow transition duration-150 bg-white">
                         <div>
-                            <div class="text-lg font-medium text-gray-800">{{ guest.prenume }}</div>
+                            <div class="text-lg font-medium text-gray-800">{{ guest.prenume }} {{ guest.nume }}</div>
                         </div>
                         <div class="text-right">
                             <div class="text-sm text-gold-dark">Invitat</div>
@@ -150,7 +150,19 @@
                     const seen = new Set();
                     for (const g of guests.value) {
                         const pren = normalizeText(g.prenume || '');
-                        if (pren && pren.startsWith(q)) {
+                        let matches = false;
+                        
+                        // Check if any of the prenumele separated by & match
+                        if (pren && pren.includes('&')) {
+                            // Multiple prenumele separated by &
+                            const prenumeles = pren.split('&').map(p => p.trim());
+                            matches = prenumeles.some(p => p.startsWith(q));
+                        } else {
+                            // Single prenume
+                            matches = pren && pren.startsWith(q);
+                        }
+                        
+                        if (matches) {
                             const key = ((g.prenume||'') + '|' + (g.nume||'')).toLowerCase();
                             if (!seen.has(key)) { seen.add(key); out.push(g); }
                         }
