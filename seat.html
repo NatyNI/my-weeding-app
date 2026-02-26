@@ -12,7 +12,7 @@
 </head>
 <body class="min-h-screen flex items-center justify-center font-sans">
     <main id="app" class="w-full max-w-2xl p-8 text-center">
-        <h1 id="guestName" class="font-serif text-4xl text-gray-800 mb-2">Se caută...</h1>
+        <h1 id="guestName" class="font-serif text-3xl text-gray-800 mb-2">Se caută...</h1> 
         <p id="message" class="text-lg text-gray-700 mb-4">Se caută numele...</p>
         <div id="details" class="mb-6"></div>
         
@@ -20,45 +20,65 @@
     </main>
 
     <script>
-        function getParam(name) {
-            const params = new URLSearchParams(window.location.search);
-            return params.get(name) || '';
-        }
-
-        // safe normalizer (removes diacritics)
+        // Funcție pentru normalizare text (elimină diacritice, case insensitive)
         function normalizeStr(s=''){
-              return s.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            return s.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         }
 
+        // Funcția formatName care returnează HTML cu prenumele și numele aranjate cum dorești
+        function formatName(prenume, nume) {
+            if (!prenume && !nume) return '—';
+            const prenumArray = (prenume || '').split('&').map(p => p.trim()).filter(p => p);
+            if (prenumArray.length > 1) {
+                // Prenume multiple, toate pe un rând, numele dedesubt
+                return `
+                    <div style="font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; line-height: 1.2;">
+                        ${prenumArray.join(' & ')}
+                    </div>
+                    <div style="font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; line-height: 1.2;">
+                        ${nume || ''}
+                    </div>
+                `;
+            } else {
+                // Un singur prenume, tot pe un rând
+                return `<div style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700;">
+                            ${(prenume || '') + ' ' + (nume || '')}
+                        </div>`;
+            }
+        }
 
         (async function(){
             const params = new URLSearchParams(window.location.search);
-            // Robust name extraction: try URLSearchParams, fall back to manual decode to handle + and percent encoding
+
+            // Extragem parametrii din URL cu fallback-uri
             let raw = params.get('name') || '';
             if (!raw) {
                 const match = window.location.search.match(/[?&]name=([^&]+)/);
                 raw = match ? match[1] : '';
             }
-            // decode percent-encoding and convert + to spaces
+
             let rawDecoded = '';
             try {
                 rawDecoded = raw ? decodeURIComponent(raw.replace(/\+/g, ' ')) : '';
             } catch (e) {
                 rawDecoded = raw.replace(/\+/g, ' ');
             }
+
             const masaParam = params.get('masa') || (function(){ const m = window.location.search.match(/[?&]masa=([^&]+)/); return m? decodeURIComponent(m[1].replace(/\+/g,' ')) : null; })();
             const prenumeParam = params.get('prenume') || (function(){ const m = window.location.search.match(/[?&]prenume=([^&]+)/); return m? decodeURIComponent(m[1].replace(/\+/g,' ')) : ''; })();
             const numeParam = params.get('nume') || (function(){ const m = window.location.search.match(/[?&]nume=([^&]+)/); return m? decodeURIComponent(m[1].replace(/\+/g,' ')) : ''; })();
+            const informatii = params.get('informatii') || (function(){ const m = window.location.search.match(/[?&]informatii=([^&]+)/); return m? decodeURIComponent(m[1].replace(/\+/g,' ')) : ''; })();
+
             const messageEl = document.getElementById('message');
             const nameEl = document.getElementById('guestName');
             const detailsEl = document.getElementById('details');
 
-            // If a name is provided, show it immediately so page doesn't look empty
+            // Dacă avem numele decodat, îl afișăm imediat (ca să nu fie gol pagina)
             if (rawDecoded) {
                 nameEl.textContent = rawDecoded;
             }
 
-            // extra fallback: parse directly from location.href in case URLSearchParams/regex failed
+            // Fallback extra pentru extragere nume din URL
             if (!rawDecoded) {
                 try {
                     const hrefMatch = window.location.href.match(/[?&]name=([^&]+)/);
@@ -75,60 +95,64 @@
                 }
             }
 
-            // debug: print parsed params to console so we can inspect what the page received
+            // Debug: parametrii primiți
             console.debug('seat.html params:', { raw, rawDecoded, masaParam, prenumeParam, numeParam, href: window.location.href });
 
-            // sessionStorage fallback: if no name param, try reading the selected guest saved by index.html
+            // Fallback din sessionStorage în caz că nu vine parametru nume
             if (!rawDecoded) {
                 try {
                     const stored = sessionStorage.getItem('selectedGuest');
                     if (stored) {
                         const guest = JSON.parse(stored);
-                        const display = ((guest.prenume || '') + ' ' + (guest.nume || '')).trim();
-                        if (display) nameEl.textContent = display;
+                        nameEl.innerHTML = formatName(guest.prenume, guest.nume);
                         if (guest.masa !== undefined && guest.masa !== null) {
-                            messageEl.innerHTML = '<span class="text-2xl font-semibold">Locul tau esta la masa ' + (guest.masa || 'nealocat') + '</span>';
+                            messageEl.innerHTML = '<span class="text-2xl font-semibold">Locul dvs este la masa ' + (guest.masa || 'nealocat') + '</span>';
                         }
                         const plus = guest.plus ? ('Însoțitor: +' + guest.plus) : '—';
-                        detailsEl.innerHTML = '<div class="p-4 rounded-lg" style="background:#F2EDE0;border:1px solid rgba(166,132,80,0.06)"><div class="text-sm text-gray-600">Detalii invitat</div><div class="mt-2 text-lg">' + plus + '</div></div>';
+                        detailsEl.innerHTML = `<div class="p-4 rounded-lg" style="background:#F2EDE0;border:1px solid rgba(166,132,80,0.06)">
+                            <div class="text-sm text-gray-600">Detalii invitat</div>
+                            <div class="mt-2 text-lg">${plus}</div>
+                        </div>`;
                         return;
                     }
                 } catch (e) {
-                    // ignore JSON errors
+                    // ignorăm erorile JSON
                 }
             }
 
-            // If masa is present in URL, show immediately and stop
+            // Dacă avem masa, afișăm și oprim
             if (rawDecoded && masaParam) {
+                nameEl.innerHTML = formatName(prenumeParam, numeParam);
                 messageEl.innerHTML = `
-  <div class="text-center">
-    <span class="text-lg text-gray-600">Locul tău este la masa</span><br>
-    <span class="inline-block mt-2 px-4 py-2 text-3xl font-bold text-[#A77B2E] bg-[#FFF4E0] rounded-lg shadow-md">
-      ${masaParam || 'nealocat'}
-    </span>
-  </div>
-
-                                    `;
-                const plusText = prenumeParam || numeParam ? 'Invitat: ' + (prenumeParam ? (prenumeParam + ' ') : '') + (numeParam || '') : '—';
-                detailsEl.innerHTML = '<div class="p-4 rounded-lg" style="background:#F2EDE0;border:1px solid rgba(166,132,80,0.06)"><div class="text-sm text-gray-600">Detalii invitat</div><div class="mt-2 text-lg">' + plusText + '</div></div>';
+                    <div class="text-center">
+                        <span class="text-lg text-gray-600">Locul dvs este la masa</span><br>
+                        <span class="inline-block mt-2 px-4 py-2 text-3xl font-bold text-[#A77B2E] bg-[#FFF4E0] rounded-lg shadow-md">
+                            ${masaParam || 'nealocat'}
+                        </span>
+                    </div>`;
+                const plusText = informatii ? 'Informații: ' + informatii : '—';
+                detailsEl.innerHTML = `<div class="p-4 rounded-lg" style="background:#F2EDE0;border:1px solid rgba(166,132,80,0.06)">
+                    <div class="text-sm text-gray-600">Detalii invitat</div>
+                    <div class="mt-2 text-lg">${plusText}</div>
+                </div>`;
                 return;
             }
 
-            // If only name provided, indicate we're looking up the table, then fetch
+            // Dacă avem numele dar nu și masa, afișăm mesajul de căutare
             if (rawDecoded && !masaParam) {
                 messageEl.textContent = 'Se caută masa...';
             }
 
-            // If no name provided, show error
-            if(!raw) {
+            // Dacă nu avem niciun nume, afișăm eroare
+            if (!raw) {
                 messageEl.textContent = 'Niciun nume furnizat. Revino la pagina principală și introdu numele tău.';
                 return;
             }
 
             const target = rawDecoded.trim();
-            try{
+            try {
                 const res = await fetch('invitati.json', {cache: 'no-store'});
-                if(!res.ok) throw new Error(res.status + ' ' + res.statusText);
+                if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
                 const data = await res.json();
                 const list = Array.isArray(data) ? data : (data.invitați || data.invitati || data.guests || []);
                 const found = list.find(g => {
@@ -136,12 +160,10 @@
                     const target_norm = normalizeStr(target);
                     const fullname_norm = normalizeStr(fullname);
                     const nume_norm = normalizeStr(g.nume);
-                    
-                    // Check full name first
+
                     if (fullname_norm === target_norm) return true;
                     if (nume_norm === target_norm) return true;
-                    
-                    // Check if target matches any of the prenumele separated by &
+
                     const prenume = g.prenume || '';
                     if (prenume.includes('&')) {
                         const prenumeles = prenume.split('&').map(p => normalizeStr(p.trim()));
@@ -149,25 +171,26 @@
                     } else {
                         if (normalizeStr(prenume) === target_norm) return true;
                     }
-                    
+
                     return false;
                 });
-                if(found){
+
+                if (found) {
                     const masa = found.masa ?? 'nealocat';
-                    nameEl.textContent = ((found.prenume || '') + ' ' + (found.nume || '')).trim();
-                    messageEl.innerHTML = '<span class="text-2xl font-semibold">Tu stai la masa ' + masa + '</span>';
+                    nameEl.innerHTML = formatName(found.prenume, found.nume);
+                    messageEl.innerHTML = `<span class="text-2xl font-semibold">Tu stai la masa ${masa}</span>`;
                     const plus = found.plus ? ('Însoțitor: +' + found.plus) : 'Fără însoțitor';
-                    detailsEl.innerHTML = '<div class="p-4 rounded-lg" style="background:#F2EDE0;border:1px solid rgba(166,132,80,0.06)"><div class="text-sm text-gray-600">Detalii invitat</div><div class="mt-2 text-lg">' + plus + '</div></div>';
-                    // presence confirmation removed per user request
+                    detailsEl.innerHTML = `<div class="p-4 rounded-lg" style="background:#F2EDE0;border:1px solid rgba(166,132,80,0.06)">
+                        <div class="text-sm text-gray-600">Detalii invitat</div>
+                        <div class="mt-2 text-lg">${plus}</div>
+                    </div>`;
                 } else {
                     messageEl.textContent = 'Nu am găsit numele tău. Verifică dacă l-ai tastat corect.';
                 }
-            }catch(err){
+            } catch (err) {
                 messageEl.textContent = 'Eroare la încărcare: ' + (err.message || err);
             }
         })();
-
-        // Presence confirmation/export logic removed per user request
     </script>
 </body>
 </html>
