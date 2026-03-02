@@ -39,7 +39,7 @@
   {"nume": "Manole", "prenume": "Alex", "masa": 5},
   {"nume": "Dobre", "prenume": "Alex", "masa": 1},
   {"nume": "Vacaru", "prenume": "Georgiana & Iosif", "masa": 2, "informatii": "Coppii dvs stau la masa 2 da da da da da d a fjdsaofjadsojfifjdjfiad"},
-  {"nume": "Enache", "prenume": "Ioana", "masa": 3},
+  {"nume": "Enache", "prenume": "Ioana", "masa": 3, "informatii": "Invitat"},
   {"nume": "Sandu", "prenume": "Ioana", "masa": 4},
   {"nume": "Pop", "prenume": "Ioana", "masa": 5},
   {"nume": "Voinea", "prenume": "Ioana", "masa": 1},

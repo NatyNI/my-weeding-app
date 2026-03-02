@@ -130,9 +130,9 @@
                             ${masaParam || 'nealocat'}
                         </span>
                     </div>`;
-                const plusText = informatii ? 'Informații: ' + informatii : '—';
+                const plusText = informatii || '—';
                 detailsEl.innerHTML = `<div class="p-4 rounded-lg" style="background:#F2EDE0;border:1px solid rgba(166,132,80,0.06)">
-                    <div class="text-sm text-gray-600">Detalii invitat</div>
+                    <div class="text-sm text-gray-600">Detalii</div>
                     <div class="mt-2 text-lg">${plusText}</div>
                 </div>`;
                 return;
@@ -181,7 +181,7 @@
                     messageEl.innerHTML = `<span class="text-2xl font-semibold">Tu stai la masa ${masa}</span>`;
                     const plus = found.plus ? ('Însoțitor: +' + found.plus) : 'Fără însoțitor';
                     detailsEl.innerHTML = `<div class="p-4 rounded-lg" style="background:#F2EDE0;border:1px solid rgba(166,132,80,0.06)">
-                        <div class="text-sm text-gray-600">Detalii invitat</div>
+                        <div class="text-sm text-gray-600">Detalii</div>
                         <div class="mt-2 text-lg">${plus}</div>
                     </div>`;
                 } else {
