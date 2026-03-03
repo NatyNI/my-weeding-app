@@ -7,14 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: linear-gradient(180deg, #FFFDF9 0%, #FBF7F1 100%); }
+        body { 
+            background: linear-gradient(180deg, #FFFDF9 0%, #FBF7F1 100%);
+        }
     </style>
 </head>
 
-<body class="h-screen flex flex-col overflow-hidden font-sans">
+<body class="flex flex-col min-h-screen font-sans">
 
     <!-- CONTINUT -->
-    <main id="app" class="flex-1 overflow-y-auto w-full max-w-2xl p-8 text-center pt-20 mx-auto">
+    <main id="app" class="w-full max-w-2xl p-8 text-center pt-20 mx-auto flex-grow">
         <h1 id="guestName" class="font-serif text-3xl text-gray-800 mb-2">
             Se caută...
         </h1> 
@@ -23,7 +25,9 @@
             Se caută numele...
         </p>
 
-        <div id="details" class="mb-6"></div>
+        <div id="details" class="mb-6">
+            <!-- Aici se poate adăuga conținut suplimentar -->
+        </div>
         
         <a href="index.html"
            class="inline-block px-5 py-3 rounded-md"
@@ -33,7 +37,7 @@
     </main>
 
     <!-- FOOTER FIX JOS -->
-    <footer class="py-6 text-center">
+    <footer class="mt-auto py-6 text-center">
 
         <div class="w-20 h-[1.5px] bg-[#D4AF37] mx-auto mb-6 opacity-60"></div>
 
