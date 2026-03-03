@@ -10,8 +10,8 @@
         body { background: linear-gradient(180deg, #FFFDF9 0%, #FBF7F1 100%); }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center font-sans">
-    <main id="app" class="w-full max-w-2xl p-8 text-center">
+<body class="h-screen w-screen overflow-hidden flex items-center justify-center font-sans bg-gradient-to-b from-[#FFFDF9] to-[#FBF7F1]">
+    <main id="app" class="w-full max-w-2xl p-8 text-center flex flex-col items-center justify-center h-full">
         <h1 id="guestName" class="font-serif text-3xl text-gray-800 mb-2">Se caută...</h1> 
         <p id="message" class="text-lg text-gray-700 mb-4">Se caută numele...</p>
         <div id="details" class="mb-6"></div>
@@ -41,7 +41,7 @@
                 `;
             } else {
                 // Un singur prenume, tot pe un rând
-                return `<div style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700;">
+                return `<div style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700;">
                             ${(prenume || '') + ' ' + (nume || '')}
                         </div>`;
             }
@@ -125,7 +125,7 @@
                 nameEl.innerHTML = formatName(prenumeParam, numeParam);
                 messageEl.innerHTML = `
                     <div class="text-center">
-                        <span class="text-lg text-gray-600">Locul dvs este la masa</span><br>
+                        <span class="text-lg text-gray-600 font-semibold">Locul dvs este la masa</span><br>
                         <span class="inline-block mt-2 px-4 py-2 text-3xl font-bold text-[#A77B2E] bg-[#FFF4E0] rounded-lg shadow-md">
                             ${masaParam || 'nealocat'}
                         </span>
