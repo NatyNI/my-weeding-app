@@ -125,15 +125,15 @@
                 nameEl.innerHTML = formatName(prenumeParam, numeParam);
                 messageEl.innerHTML = `
                     <div class="text-center">
-                        <span class="text-l text-gray-600 font-bold">Locul dvs este la masa</span><br>
+                        <span class="text-l text-gray-600 font-semibold">Locul dvs este la masa</span><br>
                         <span class="inline-block mt-2 px-4 py-2 text-3xl font-bold text-[#A77B2E] bg-[#FFF4E0] rounded-lg shadow-md">
                             ${masaParam || 'nealocat'}
                         </span>
                     </div>`;
                 const plusText = informatii || '—';
                 detailsEl.innerHTML = `<div class="p-4 rounded-lg" style="background:#F2EDE0;border:1px solid rgba(166,132,80,0.06)">
-                    <div class="text-sm text-gray-600">Detalii</div>
-                    <div class="mt-2 text-lg">${plusText}</div>
+                    <div class="text-m text-gray-600 font-bold">Detalii:</div>
+                    <div class="mt-2 text-m italic">${plusText}</div>
                 </div>`;
                 return;
             }
