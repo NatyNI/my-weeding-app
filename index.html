@@ -46,8 +46,13 @@
     <div id="app" class="min-h-screen flex items-start justify-center py-8 px-6">
         <div class="w-full max-w-2xl">
             <header class="mb-6 text-center">
-                <p class="text-xl text-gray-700 font-serif font-medium mb-2">Bine ați venit la nunta lui</p>
-                <h1 class="font-serif text-3xl text-gold-dark mb-2" style="color:#A77B2E">Natanael & Mihaela</h1>
+                <p class="text-sm tracking-widest uppercase text-gray-500 font-medium">
+                    Bine ați venit la nunta lui
+                 </p>
+
+                <h1 class="font-serif text-4xl md:text-5xl text-[#A77B2E] leading-tight">
+                    Natanael <span class="text-gray-400">&</span> Mihaela
+                </h1>
                 <div class="mt-4 flex items-center justify-center gap-3">
                 </div>
             </header>
@@ -55,8 +60,8 @@
             <section class="glass p-6 rounded-2xl shadow-xl border border-[rgba(166,132,80,0.12)]">
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
                     <div class="flex flex-col items-center gap-3">
-                            <h2 class="pb-0 font-serif text-2xl text-gray-1000">Introdu prenumele tău</h2>
-                            <p class=" mb-2 text-s text-red-400">Exemplu: Ana, Maria, Ion</p>
+                            <h2 class="pb-0 font-serif text-2xl">Introduceți prenumele</h2>
+                            <p class="mb-2 text-sm text-red-600">Exemplu: Ana, Maria, Ion</p>
                     </div>
 
                     <div class="flex-1 sm:max-w-sm">
@@ -76,7 +81,7 @@
                 <div v-if="loading" class="py-12 text-center text-gray-500">Se încarcă invitații…</div>
                 <div v-else-if="error" class="py-12 text-center text-red-600">Eroare la încărcare: {{ error }}</div>
                 <div v-else class="overflow-y-auto max-h-[21.5rem]">
-                    <div v-if="!query.trim()" class="py-12 text-center text-gray-500">Sugestiile vor apărea aici.</div>
+                    <div v-if="!query.trim()" class="py-12 text-center text-gray-400 italic tracking-wide"> Sugestiile vor apărea aici.</div>
                     <div v-else class="overflow-y-auto" style="max-height:18rem">
                     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-1">
                         <li v-for="guest in filteredGuests " :key="guest.id || (guest.prenume + guest.nume)" @click="selectGuest(guest)"
@@ -96,6 +101,13 @@
                     </div>
                 </div>
             </section>
+          <div class="fixed -bottom-40 left-0 w-full flex justify-center pointer-events-none -z-10">
+    <img 
+        src="image.png" 
+        alt="Decor"
+        class="w-80 md:w-[500px] opacity-80 object-contain"
+    >
+</div>
 
 
             <!-- Modal -->
