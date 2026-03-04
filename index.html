@@ -82,12 +82,12 @@
                 <div v-else-if="error" class="py-12 text-center text-red-600">Eroare la încărcare: {{ error }}</div>
                 <div v-else class="overflow-y-auto max-h-[21.5rem]">
                     <div v-if="!query.trim()" class="py-12 text-center text-gray-400 italic tracking-wide"> Sugestiile vor apărea aici.</div>
-                    <div v-else class="overflow-y-auto" style="max-height:18rem">
+                    <div v-else class="overflow-y-auto" >
                     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-1">
                         <li v-for="guest in filteredGuests " :key="guest.id || (guest.prenume + guest.nume)" @click="selectGuest(guest)"
                             class="cursor-pointer flex items-center justify-between gap-1 p-2 rounded-lg border border-[rgba(166,132,80,0.06)] hover:shadow transition duration-150 bg-white">
                         <div>
-                            <div class="text-xl font-medium text-gray-800">{{ guest.prenume }} {{ guest.nume }}</div>
+                            <div class="text-xl font-bold text-gray-800">{{ guest.prenume }} {{ guest.nume }}</div>
                         </div>
                        <div class="relative w-4 h-4">
                             <!-- cerc exterior alb cu margine -->
