@@ -154,30 +154,31 @@
                 const filteredGuests = computed(() => {
                     if (!query.value.trim()) return [];
                     const q = normalizeText(query.value).trim();
-                    // Match only by first name (`prenume`) using prefix matching; remove duplicate entries
+
                     const out = [];
                     const seen = new Set();
+
                     for (const g of guests.value) {
-                        const pren = normalizeText(g.prenume || '');
-                        let matches = false;
-                        
-                        // Check if any of the prenumele separated by & match
-                        if (pren && pren.includes('&')) {
-                            // Multiple prenumele separated by &
-                            const prenumeles = pren.split('&').map(p => p.trim());
-                            matches = prenumeles.some(p => p.startsWith(q));
-                        } else {
-                            // Single prenume
-                            matches = pren && pren.startsWith(q);
+                      const pren = normalizeText(g.prenume || '');
+                      let matches = false;
+                    
+                      if (pren) {
+                        // Împarte prenumele după spațiu și după &
+                        const prenParts = pren.split(/[\s&]+/).map(p => p.trim());
+                        matches = prenParts.some(p => p.startsWith(q));
+                      }
+                  
+                      if (matches) {
+                        const key = ((g.prenume||'') + '|' + (g.nume||'')).toLowerCase();
+                        if (!seen.has(key)) {
+                          seen.add(key);
+                          out.push(g);
                         }
-                        
-                        if (matches) {
-                            const key = ((g.prenume||'') + '|' + (g.nume||'')).toLowerCase();
-                            if (!seen.has(key)) { seen.add(key); out.push(g); }
-                        }
+                      }
                     }
+                
                     return out;
-                });
+                });    
 
                 function selectGuest(guest) {
                     const full = ((guest.prenume || '') + ' ' + (guest.nume || '')).trim();
