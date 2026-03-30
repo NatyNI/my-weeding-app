@@ -1,4 +1,7 @@
 [
+
+  { "nume": "Nicolae", "prenume": "Natanael & Mihaela", "masa": "Prezidiu", "informatii": "Mirii" },
+
   { "nume": "Vișan", "prenume": "Gică", "masa": 1, "informatii": "Invitat" },
   { "nume": "Andrei", "prenume": "Tănțica & Tuta", "masa": 1, "informatii": "Invitat" },
   { "nume": "Enache", "prenume": "Marian & Cristina", "masa": 1, "informatii": "Invitat" },
@@ -7,8 +10,27 @@
   { "nume": "Floarea", "prenume": "Nelu", "masa": 1, "informatii": "Invitat" },
   { "nume": "Huțan", "prenume": "Mitică", "masa": 1, "informatii": "Invitat" },
 
+  
+  { "nume": "Duca", "prenume": "Beni & Tania", "masa": 2, "informatii": "Invitat" },
+  { "nume": "Cibota", "prenume": "Estera", "masa": 2, "informatii": "Invitat" },
+  { "nume": "Guran", "prenume": "Petronela", "masa": 2, "informatii": "Invitat" },
+  { "nume": "Babes", "prenume": "Eduard & Estera", "masa": 2, "informatii": "Copilul stă cu dvs la masă" },
+  { "nume": "Duca", "prenume": "Ninel & Rodica", "masa": 2, "informatii": "Invitat" },
+  { "nume": "Iacobescu", "prenume": "Darius & Mihaela", "masa": 2, "informatii": "Invitat" },
 
-
+  
+  { "nume": "Rusu", "prenume": "Iosif", "masa": 3, "informatii": "Invitat" },
+  { "nume": "Mitrescu", "prenume": "Vicențiu", "masa": 3, "informatii": "Invitat" },
+  { "nume": "Neagu", "prenume": "Mihai", "masa": 3, "informatii": "Invitat" },
+  { "nume": "Stănescu", "prenume": "Iesimiel", "masa": 3, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Emanuel", "masa": 3, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Stefan", "masa": 3, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Cristina", "masa": 3, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Andra", "masa": 3, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Marta", "masa": 3, "informatii": "Invitat" },
+  { "nume": "Floroiu", "prenume": "Darius", "masa": 3, "informatii": "Invitat" },
+  { "nume": "Floroiu", "prenume": "Mălina", "masa": 3, "informatii": "Invitat" },
+  { "nume": "Floroiu", "prenume": "Meri", "masa": 3, "informatii": "Invitat" },
 
   
   { "nume": "Adam", "prenume": "Lidia", "masa": 4, "informatii": "Invitat" },
@@ -106,8 +128,114 @@
   { "nume": "Nicolae", "prenume": "Emima", "masa": 12, "informatii": "Invitat" },
   { "nume": "Foszner", "prenume": "Tabita", "masa": 12, "informatii": "Invitat" },
   { "nume": "Petrache", "prenume": "Rebeca", "masa": 12, "informatii": "Invitat" },
-  { "nume": "Durlă", "prenume": "Sami", "masa": 12, "informatii": "Invitat" }
+  { "nume": "Durlă", "prenume": "Sami", "masa": 12, "informatii": "Invitat" },
 
 
+  { "nume": "Popa", "prenume": "Alin & Elena", "masa": 13, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Mihai & Petruta", "masa": 13, "informatii": "Invitat" },
+  { "nume": "Osan", "prenume": "Daniel & Marina", "masa": 13, "informatii": "Copilul stă cu dvs la masă" },
+  { "nume": "Vacaru", "prenume": "Ovidiu & Rodica", "masa": 13, "informatii": "Invitat" },
+  { "nume": "Valimareanu", "prenume": "George & Monalisa", "masa": 13, "informatii": "Invitat" },
+
+
+  { "nume": "Răuță", "prenume": "Silviu & Maria", "masa": 14, "informatii": "Invitat" },
+  { "nume": "Itigan", "prenume": "Emanuel & Raluca", "masa": 14, "informatii": "Invitat" },
+  { "nume": "Frincu", "prenume": "Simon & Roxana", "masa": 14, "informatii": "Invitat" },
+  { "nume": "Filoti", "prenume": "Sergiu & Estera", "masa": 14, "informatii": "Invitat" },
+  { "nume": "Floarea", "prenume": "Nelu", "masa": 14, "informatii": "Invitat" },
+  { "nume": "Morișcă", "prenume": "Alexandru", "masa": 14, "informatii": "Invitat" },
+
+  
+  { "nume": "Niculae", "prenume": "Orlando", "masa": 15, "informatii": "Invitat" },
+  { "nume": "Talpan", "prenume": "Oana", "masa": 15, "informatii": "Invitat" },
+  { "nume": "Voicu", "prenume": "Gabriel", "masa": 15, "informatii": "Invitat" },
+  { "nume": "Niculae", "prenume": "Daniela", "masa": 15, "informatii": "Invitat" },
+  { "nume": "Mosor", "prenume": "Mihai", "masa": 15, "informatii": "Invitat" },
+  { "nume": "Necula", "prenume": "Denisa", "masa": 15, "informatii": "Invitat" },
+  { "nume": "Mincu", "prenume": "Dani", "masa": 15, "informatii": "Invitat" },
+  { "nume": "Neacșu", "prenume": "Gabi", "masa": 15, "informatii": "Invitat" },
+  { "nume": "Preda", "prenume": "Alexandra", "masa": 15, "informatii": "Invitat" },
+  { "nume": "Preoteasa", "prenume": "Alexandru", "masa": 15, "informatii": "Invitat" },
+  { "nume": "Ghițescu", "prenume": "Clara", "masa": 15, "informatii": "Invitat" },
+
+  
+  { "nume": "Titea", "prenume": "Liviu & Emima", "masa": 16, "informatii": "Copiii stau cu dvs la masă" },
+  { "nume": "Vacaru", "prenume": "Simon & Miriam", "masa": 16, "informatii": "Invitat" },
+  { "nume": "Grigore", "prenume": "Gavris", "masa": 16, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Sara (SM)", "masa": 16, "informatii": "Invitat" },
+  { "nume": "Pietrareanu", "prenume": "Marian & Rebeca", "masa": 16, "informatii": "Invitat" },
+
+
+  { "nume": "Nicolae", "prenume": "Sami & Bianca", "masa": 17, "informatii": "Copilul stă cu dvs la masă" },
+  { "nume": "Nae", "prenume": "Simon & Fivi", "masa": 17, "informatii": "Invitat" },
+  { "nume": "Dumitru", "prenume": "Ștefan & Elisa", "masa": 17, "informatii": "Copilul stă cu dvs la masă" },
+  { "nume": "Ilie", "prenume": "Mihai & Andreea", "masa": 17, "informatii": "Invitat" },
+  { "nume": "Horj", "prenume": "Sorin & Savy", "masa": 17, "informatii": "Invitat" },
+
+  
+  { "nume": "Copăceanu", "prenume": "Cerasela", "masa": 18, "informatii": "Invitat" },
+  { "nume": "Copăceanu", "prenume": "Vania", "masa": 18, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Denis", "masa": 18, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Claudiu & Stefania", "masa": 18, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Adrian & Mirela", "masa": 18, "informatii": "Invitat" },
+  { "nume": "Gava", "prenume": "Alexandru & Roxana", "masa": 18, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Adriana", "masa": 18, "informatii": "Invitat" },
+
+
+  { "nume": "Răuță", "prenume": "Copil", "masa": 19, "informatii": "Invitat" },
+  { "nume": "Ivan", "prenume": "Neemia", "masa": 19, "informatii": "Invitat" },
+  { "nume": "Ivan", "prenume": "Ezra", "masa": 19, "informatii": "Invitat" },
+  { "nume": "Ivan", "prenume": "Azaria", "masa": 19, "informatii": "Invitat" },
+  { "nume": "Ivan", "prenume": "Maria", "masa": 19, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Matei", "masa": 19, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Filip", "masa": 19, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Natasa", "masa": 19, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Tania", "masa": 19, "informatii": "Invitat" },
+
+  
+  { "nume": "Braga", "prenume": "Claudia & Ion", "masa": 20, "informatii": "Copiii stau cu dvs la masă" },
+
+  
+  { "nume": "Nica", "prenume": "Maricica & Ionel", "masa": 21, "informatii": "Invitat" },
+  { "nume": "Foszner", "prenume": "Carol & Magda", "masa": 21, "informatii": "Invitat" },
+  { "nume": "Dumitrache", "prenume": "Mirela & Marian", "masa": 21, "informatii": "Invitat" },
+  { "nume": "Mincu", "prenume": "Simion Florina", "masa": 21, "informatii": "Invitat" },
+  { "nume": "Roncea", "prenume": "Bogdan", "masa": 21, "informatii": "Invitat" },
+  { "nume": "Roncea", "prenume": "Alexandra", "masa": 21, "informatii": "Invitat" },
+
+  
+  { "nume": "Neaga", "prenume": "Ștefan", "masa": 22, "informatii": "Invitat" },
+  { "nume": "Cipri", "prenume": "Mihai", "masa": 22, "informatii": "Invitat" },
+  { "nume": "Teodorescu", "prenume": "Emma", "masa": 22, "informatii": "Invitat" },
+  { "nume": "Paraschiv", "prenume": "Gabriel", "masa": 22, "informatii": "Invitat" },
+  { "nume": "Paraschiv", "prenume": "Nicoleta", "masa": 22, "informatii": "Invitat" },
+  { "nume": "Stănescu", "prenume": "Mihai & Cireșica", "masa": 22, "informatii": "Invitat" },
+  { "nume": "Dospinescu", "prenume": "Romeo", "masa": 22, "informatii": "Invitat" },
+  { "nume": "Petre", "prenume": "Gabriel", "masa": 22, "informatii": "Invitat" },
+  { "nume": "Postea", "prenume": "Doina Mihaela", "masa": 22, "informatii": "Invitat" },
+
+
+  { "nume": "Nicolae", "prenume": "Andrei & Iulia", "masa": 23, "informatii": "Copilul stă cu dvs la masă" },
+  { "nume": "Florescu", "prenume": "Mariana", "masa": 23, "informatii": "Invitat" },
+  { "nume": "Timofte", "prenume": "Marius & Maribel", "masa": 23, "informatii": "Copilul stă cu dvs la masă" },
+  { "nume": "Ardelean", "prenume": "Ică & Lili", "masa": 23, "informatii": "Invitat" },
+  { "nume": "Francescu", "prenume": "Dan", "masa": 23, "informatii": "Invitat" },
+  { "nume": "Niculae", "prenume": "Flori", "masa": 23, "informatii": "Invitat" },
+
+  
+  { "nume": "Vacaru", "prenume": "Bogdan & Alicea", "masa": 24, "informatii": "Invitat" },
+  { "nume": "Pojala", "prenume": "Mariana", "masa": 24, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Mioara", "masa": 24, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Sandu & Flori", "masa": 24, "informatii": "Invitat" },
+  { "nume": "Cotenescu", "prenume": "Liviu & Dani", "masa": 24, "informatii": "Invitat" },
+  { "nume": "Vacaru", "prenume": "Alin & Costinela", "masa": 24, "informatii": "Invitat" },
+  { "nume": "Duca", "prenume": "Sofia", "masa": 24, "informatii": "Invitat" },
+  { "nume": "Pojala", "prenume": "Emanuela", "masa": 24, "informatii": "Invitat" },
+
+  
+  { "nume": "Barbu", "prenume": "Dani & Andreea", "masa": 25, "informatii": "Copilul stă cu dvs la masă" },
+  { "nume": "Nicolae", "prenume": "Timo & Lăcri", "masa": 25, "informatii": "Copiii stau cu dvs la masă" },
+  { "nume": "Bledea", "prenume": "Lică & Denisa", "masa": 25, "informatii": "Copiii stau cu dvs la masă" },
+  { "nume": "Ilie", "prenume": "Ștefan & Ema", "masa": 25, "informatii": "Invitat" }
 
 ]
