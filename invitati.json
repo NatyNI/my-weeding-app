@@ -4,11 +4,12 @@
 
   { "nume": "Vișan", "prenume": "Gică", "masa": 1, "informatii": "Invitat" },
   { "nume": "Andrei", "prenume": "Tuta & Tănțica ", "masa": 1, "informatii": "Invitat" },
-  { "nume": "Enache", "prenume": "Marian & Cristina", "masa": 1, "informatii": "Invitat" },
   { "nume": "Sima", "prenume": "Tibi & Steluța", "masa": 1, "informatii": "Invitat" },
   { "nume": "Cozac", "prenume": "Marcel & Nina", "masa": 1, "informatii": "Invitat" },
   { "nume": "Floarea", "prenume": "Nelu", "masa": 1, "informatii": "Invitat" },
   { "nume": "Huțan", "prenume": "Mitică", "masa": 1, "informatii": "Invitat" },
+  { "nume": "Văcaru", "prenume": "Eugen & Dănica", "masa": 1, "informatii": "Invitat" },
+  { "nume": "Floarea", "prenume": "Nelu", "masa": 1, "informatii": "Invitat" },
 
   
   { "nume": "Duca", "prenume": "Beni & Tania", "masa": 2, "informatii": "Invitat" },
@@ -148,8 +149,8 @@
   { "nume": "Itigan", "prenume": "Emanuel & Raluca", "masa": 14, "informatii": "Invitat" },
   { "nume": "Frincu", "prenume": "Simon & Roxana", "masa": 14, "informatii": "Invitat" },
   { "nume": "Filoti", "prenume": "Sergiu & Estera", "masa": 14, "informatii": "Invitat" },
-  { "nume": "Floarea", "prenume": "Nelu", "masa": 14, "informatii": "Invitat" },
   { "nume": "Morișcă", "prenume": "Alexandru", "masa": 14, "informatii": "Invitat" },
+  { "nume": "Enache", "prenume": "Marian & Cristina", "masa": 14, "informatii": "Invitat" },
 
   
   { "nume": "Niculae", "prenume": "Orlando", "masa": 15, "informatii": "Invitat" },
