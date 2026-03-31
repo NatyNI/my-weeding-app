@@ -118,6 +118,8 @@
   { "nume": "Popa", "prenume": "David", "masa": 11, "informatii": "Invitat" },
   { "nume": "Coroiu", "prenume": "Rebeca", "masa": 11, "informatii": "Invitat" },
   { "nume": "Coroiu", "prenume": "David", "masa": 11, "informatii": "Invitat" },
+  { "nume": "Homneac", "prenume": "Naomi Tabita", "masa": 11, "informatii": "Invitat" },
+  { "nume": "Homneac", "prenume": "Fabian", "masa": 11, "informatii": "Invitat" },
 
   
   { "nume": "Văcaru", "prenume": "Marinela", "masa": 12, "informatii": "Invitat" },
