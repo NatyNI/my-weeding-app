@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Aplicație Nuntă — Invitati</title>
 
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <!-- Tailwind config + CDN -->
     <script>
         tailwind = { config: {
             theme: {
@@ -30,7 +28,6 @@
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Vue 3 CDN -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 
     <style>
@@ -49,31 +46,30 @@
                 <p class="text-sm tracking-widest uppercase text-gray-500 font-medium">
                     Bine ați venit la nunta lui
                  </p>
-
                 <h1 class="font-serif text-4xl md:text-5xl text-[#A77B2E] leading-tight">
                     Natanael <span class="text-gray-400">&</span> Mihaela
                 </h1>
-                <div class="mt-4 flex items-center justify-center gap-3">
-                </div>
             </header>
 
             <section class="glass p-6 rounded-2xl shadow-xl border border-[rgba(166,132,80,0.12)]">
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
                     <div class="flex flex-col items-center gap-3">
-                            <h2 class="pb-0 font-serif text-2xl">Introduceți prenumele</h2>
-                            <p class="mb-2 text-sm text-red-600">Exemplu: Ana, Maria, Ion</p>
+                            <h2 class="pb-0 font-serif text-2xl">Căutați numele dvs.</h2>
+                            <p class="mb-2 text-sm text-red-600 text-center">Exemplu: Maricica Nica sau Ionel Nica</p>
                     </div>
 
                     <div class="flex-1 sm:max-w-sm">
                         <label class="relative block">
                             <input 
-                    v-model="query" 
-                    type="search" 
-                    placeholder="Tastează pentru sugestii..." 
-                    autocomplete="off" 
-                    class="w-full py-3 pl-10 pr-4 rounded-lg border-2 border-[#D4AF37] bg-white/60 
-           focus:outline-none focus:border-[#FFC845] transition transform focus:scale-105 placeholder-gray-400">
-                            <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gold" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#C69E45"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z"/></svg>
+                                v-model="query" 
+                                type="search" 
+                                placeholder="Introduceți numele..." 
+                                autocomplete="off" 
+                                class="w-full py-3 pl-10 pr-4 rounded-lg border-2 border-[#D4AF37] bg-white/60 focus:outline-none focus:border-[#FFC845] transition transform focus:scale-105 placeholder-gray-400"
+                            >
+                            <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gold" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#C69E45">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z"/>
+                            </svg>
                         </label>
                     </div>
                 </div>
@@ -81,70 +77,28 @@
                 <div v-if="loading" class="py-12 text-center text-gray-500">Se încarcă invitații…</div>
                 <div v-else-if="error" class="py-12 text-center text-red-600">Eroare la încărcare: {{ error }}</div>
                 <div v-else class="overflow-y-auto max-h-[21.5rem]">
-                    <div v-if="!query.trim()" class="py-12 text-center text-gray-400 italic tracking-wide"> Sugestiile vor apărea aici.</div>
-                    <div v-else class="overflow-y-auto" >
-                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-1">
-                        <li v-for="guest in filteredGuests " :key="guest.id || (guest.prenume + guest.nume)" @click="selectGuest(guest)"
-                            class="cursor-pointer flex items-center justify-between gap-1 p-2 rounded-lg border border-[rgba(166,132,80,0.06)] hover:shadow transition duration-150 bg-white">
-                        <div>
-                            <div class="text-xl font-bold text-gray-800">{{ guest.prenume }} {{ guest.nume }}</div>
-                        </div>
-                       <div class="relative w-4 h-4">
-                            <!-- cerc exterior alb cu margine -->
-                            <span class="absolute inset-0 block w-full h-full bg-white border-2 border-yellow-600 rounded-full"></span>
-                            <!-- cerc interior plin, puțin mai mic -->
-                            <span class="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-yellow-600 rounded-full"></span>
-                        </div>
-                    </li>
-                        <li v-if="filteredGuests.length === 0" class="col-span-full text-center py-8 text-gray-500">Niciun rezultat pentru "{{ query }}"</li>
-                    </ul>
+                    <div v-if="!query.trim()" class="py-12 text-center text-gray-400 italic tracking-wide">Sugestiile vor apărea aici.</div>
+                    <div v-else>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <li v-for="guest in filteredGuests" :key="guest.id || (guest.prenume + guest.nume)" @click="selectGuest(guest)"
+                                class="cursor-pointer flex items-center justify-between gap-1 p-3 rounded-lg border border-[rgba(166,132,80,0.15)] hover:shadow-md transition duration-150 bg-white">
+                                <div>
+                                    <div class="text-lg font-bold text-gray-800">{{ guest.prenume }} {{ guest.nume }}</div>
+                                </div>
+                                <div class="relative w-4 h-4 flex-shrink-0">
+                                    <span class="absolute inset-0 block w-full h-full bg-white border-2 border-yellow-600 rounded-full"></span>
+                                    <span class="absolute top-1/4 left-1/4 w-1/2 h-1/2 bg-yellow-600 rounded-full"></span>
+                                </div>
+                            </li>
+                            <li v-if="filteredGuests.length === 0" class="col-span-full text-center py-8 text-gray-500">Niciun rezultat pentru "{{ query }}"</li>
+                        </ul>
                     </div>
                 </div>
             </section>
-          <div class="fixed -bottom-40 left-0 w-full flex justify-center pointer-events-none -z-10">
-    <img 
-        src="image.png" 
-        alt="Decor"
-        class="w-80 md:w-[500px] opacity-80 object-contain"
-    >
-</div>
 
-
-            <!-- Modal -->
-            <transition name="fade">
-                <div v-if="showModal" class="fixed inset-0 z-50 flex items-center justify-center">
-                    <div @click="close" class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
-                    <div class="relative z-10 w-full max-w-md mx-4">
-                        <div class="glass p-6 rounded-2xl border-2 border-gold shadow-2xl">
-                            <div class="flex items-start justify-between gap-4">
-                                <div>
-                                    <h3 class="font-serif text-2xl text-gray-800 mb-1">{{ selected.nume }}</h3>
-                                    <p class="text-sm text-gray-600">Detalii</p>
-                                </div>
-                                <button @click="close" class="text-gray-500 hover:text-gray-700">
-                                    <svg class="w-6 h-6" fill="none" stroke="#6B7280" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
-                                </button>
-                            </div>
-
-                            <div class="mt-4 grid grid-cols-2 gap-3">
-                                <div class="p-4 rounded-lg bg-cream-2 border border-[rgba(166,132,80,0.06)]">
-                                    <div class="text-xs text-gray-500">Masa</div>
-                                    <div class="text-xl font-semibold text-gold-dark">{{ selected.masa ?? 'Nealocat' }}</div>
-                                </div>
-                                <div class="p-4 rounded-lg bg-cream-2 border border-[rgba(166,132,80,0.06)]">
-                                    <div class="text-xs text-gray-500">Însoțitor</div>
-                                    <div class="text-xl font-semibold text-gray-800">{{ selected.plus ? ('+' + selected.plus) : '—' }}</div>
-                                </div>
-                            </div>
-
-                            <div class="mt-6 flex justify-end">
-                                <button @click="close" class="px-4 py-2 rounded-md bg-gold text-white font-semibold hover:bg-gold-dark transition">Închide</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </transition>
-
+            <div class="fixed -bottom-40 left-0 w-full flex justify-center pointer-events-none -z-10">
+                <img src="image.png" alt="Decor" class="w-80 md:w-[500px] opacity-80 object-contain">
+            </div>
         </div>
     </div>
 
@@ -157,76 +111,78 @@
                 const loading = ref(true);
                 const error = ref(null);
                 const query = ref('');
-                
 
                 function normalizeText(s = '') {
-                    return s.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    return s.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
                 }
 
                 const filteredGuests = computed(() => {
-                    if (!query.value.trim()) return [];
-                    const q = normalizeText(query.value).trim();
+                    const qStr = query.value.trim();
+                    if (!qStr) return [];
+                    
+                    // Transformăm ce scrie utilizatorul într-o listă de cuvinte (ex: ["ionel", "nica"])
+                    const queryWords = normalizeText(qStr).split(/\s+/).filter(w => w.length > 0);
 
                     const out = [];
                     const seen = new Set();
 
                     for (const g of guests.value) {
-                      const pren = normalizeText(g.prenume || '');
-                      let matches = false;
-                    
-                      if (pren) {
-                        // Împarte prenumele după spațiu și după &
-                        const prenParts = pren.split(/[\s&]+/).map(p => p.trim());
-                        matches = prenParts.some(p => p.startsWith(q));
-                      }
-                  
-                      if (matches) {
-                        const key = ((g.prenume||'') + '|' + (g.nume||'')).toLowerCase();
-                        if (!seen.has(key)) {
-                          seen.add(key);
-                          out.push(g);
+                        const prenumeRaw = g.prenume || '';
+                        const numeRaw = g.nume || '';
+
+                        // Creăm un "pool" de cuvinte disponibile pentru acest rând din baza de date
+                        // Din "Maricica & Ionel" + "Nica" obținem ["maricica", "ionel", "nica"]
+                        const availableText = normalizeText(`${prenumeRaw} ${numeRaw}`);
+                        const availableWords = availableText.split(/[\s&]+/).filter(w => w.length > 0);
+
+                        // Verificăm dacă TOATE cuvintele tastate de utilizator se regăsesc printre cuvintele invitatului
+                        // (sau măcar încep cu ele, pentru a oferi sugestii în timp ce tastează)
+                        const allWordsMatch = queryWords.every(qWord => 
+                            availableWords.some(aWord => aWord.startsWith(qWord))
+                        );
+
+                        if (allWordsMatch) {
+                            const key = (prenumeRaw + '|' + numeRaw).toLowerCase();
+                            if (!seen.has(key)) {
+                                seen.add(key);
+                                out.push(g);
+                            }
                         }
-                      }
                     }
-                
-                    return out;
-                });    
+
+                    // Sortare simplă după prenume
+                    return out.sort((a, b) => (a.prenume || '').localeCompare(b.prenume || ''));
+                });
 
                 function selectGuest(guest) {
                     const full = ((guest.prenume || '') + ' ' + (guest.nume || '')).trim();
                     const params = new URLSearchParams();
                     params.set('name', full);
-                    if (guest.masa !== undefined && guest.masa !== null) params.set('masa', String(guest.masa));
+                    if (guest.masa !== undefined) params.set('masa', String(guest.masa));
                     if (guest.prenume) params.set('prenume', guest.prenume);
                     if (guest.nume) params.set('nume', guest.nume);
                     if (guest.informatii) params.set('informatii', guest.informatii);
-                    // store selected guest as fallback (useful when opening via file://)
-                    try { sessionStorage.setItem('selectedGuest', JSON.stringify(guest)); } catch (e) { /* ignore */ }
-                    const url = 'seat.html?' + params.toString();
-                    window.location.href = url;
+                    
+                    try { sessionStorage.setItem('selectedGuest', JSON.stringify(guest)); } catch (e) {}
+                    window.location.href = 'seat.html?' + params.toString();
                 }
 
                 onMounted(async () => {
                     try {
                         const res = await fetch('invitati.json', { cache: 'no-store' });
-                        if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+                        if (!res.ok) throw new Error(res.status);
                         const data = await res.json();
-                        // Accept either an array or {invitat: [...]}
                         guests.value = Array.isArray(data) ? data : (data.invitați || data.invitati || data.guests || []);
                     } catch (err) {
-                        error.value = err.message || 'Eroare necunoscută';
+                        error.value = 'Eroare la încărcarea listei.';
                     } finally {
                         loading.value = false;
                     }
-
-                    // no modal on this page; navigation to seat.html on selection
                 });
 
                 return { guests, loading, error, query, filteredGuests, selectGuest };
             }
         }).mount('#app');
-
-        // Export/clear functionality removed per user request
     </script>
 </body>
 </html>
